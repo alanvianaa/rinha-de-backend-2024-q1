@@ -1,6 +1,6 @@
 package com.rinha.plugins
 
-import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.Database
 
 object DatabaseConnection {
     fun init() {

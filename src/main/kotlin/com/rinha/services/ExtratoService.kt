@@ -1,6 +1,7 @@
 package com.rinha.services
 
-import com.rinha.models.*
+import com.rinha.models.Cliente
+import com.rinha.models.Extrato
 
 private val transacaoService = TransacaoService()
 private val saldoService = SaldoService()
