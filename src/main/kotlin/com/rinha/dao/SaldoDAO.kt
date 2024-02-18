@@ -3,7 +3,6 @@ package com.rinha.dao
 import com.rinha.models.Clientes
 import com.rinha.models.Saldo
 import com.rinha.models.Saldos
-import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select

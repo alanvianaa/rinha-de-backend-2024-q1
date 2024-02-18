@@ -3,7 +3,6 @@ val kotlin_version: String by project
 val logback_version: String by project
 
 val exposed_version: String by project
-val h2_version: String by project
 val postgresql_version: String by project
 
 plugins {
@@ -33,7 +32,6 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-java-time:$exposed_version")
-    implementation("com.h2database:h2:$h2_version")
     implementation("io.ktor:ktor-server-netty-jvm")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("io.ktor:ktor-server-tests-jvm")
