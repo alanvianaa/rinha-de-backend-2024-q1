@@ -12,7 +12,7 @@ fun main() {
 }
 
 fun Application.module() {
-    DatabaseConnection.init()
+    DatabaseConnection.init(environment)
     configureSerialization()
     configureRoutings()
 }
