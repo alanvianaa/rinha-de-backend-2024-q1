@@ -1,5 +1,0 @@
-database:
-  hostname: "$DB_HOSTNAME:localhost"
-  database: "$DB_DATABASE:rinha-database"
-  user: "$DB_USER:postgres"
-  password: "$DB_PASSWORD:admin"

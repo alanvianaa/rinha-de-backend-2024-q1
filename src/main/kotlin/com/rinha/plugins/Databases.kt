@@ -6,10 +6,10 @@ import org.jetbrains.exposed.sql.Database
 object DatabaseConnection {
     fun init(environment: ApplicationEnvironment) {
 
-        val hostname = environment.config.propertyOrNull("database.hostname")?.getString() ?: "localhost"
-        val database = environment.config.propertyOrNull("database.database")?.getString() ?: "rinha-database"
-        val user = environment.config.propertyOrNull("database.user")?.getString() ?: "postgres"
-        val password = environment.config.propertyOrNull("database.password")?.getString() ?: "admin"
+        val hostname = environment.config.propertyOrNull("database.hostname")?.getString() ?: throw Exception("Enviroment error")
+        val database = environment.config.propertyOrNull("database.database")?.getString() ?: throw Exception("Enviroment error")
+        val user = environment.config.propertyOrNull("database.user")?.getString() ?: throw Exception("Enviroment error")
+        val password = environment.config.propertyOrNull("database.password")?.getString() ?: throw Exception("Enviroment error")
 
         Database.connect(
             url = "jdbc:postgresql://$hostname/$database",
