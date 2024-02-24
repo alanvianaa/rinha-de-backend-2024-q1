@@ -2,6 +2,7 @@ package com.rinha.dao
 
 import com.rinha.models.Transacao
 import com.rinha.models.Transacoes
+import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
@@ -19,13 +20,16 @@ class TransacaoDAO {
     }
 
     fun ultimasTransacoes(idCliente: Int): List<Transacao> = transaction {
-        Transacoes.select(Transacoes.idCliente eq idCliente).map {
-            Transacao(
-                it[Transacoes.valor],
-                it[Transacoes.tipo],
-                it[Transacoes.descricao],
-                it[Transacoes.realizadaEm],
-            )
-        }
+        Transacoes.select(Transacoes.idCliente eq idCliente)
+            .orderBy(Transacoes.realizadaEm, SortOrder.DESC)
+            .limit(10)
+            .map {
+                Transacao(
+                    it[Transacoes.valor],
+                    it[Transacoes.tipo],
+                    it[Transacoes.descricao],
+                    it[Transacoes.realizadaEm],
+                )
+            }
     }
 }
