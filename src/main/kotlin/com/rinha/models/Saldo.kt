@@ -23,3 +23,9 @@ data class Saldo(
     val dataExtrato: LocalDateTime,
     val limite: Int,
 )
+
+@Serializable
+data class SaldoResposta(
+    val saldo: Int,
+    val limite: Int,
+)

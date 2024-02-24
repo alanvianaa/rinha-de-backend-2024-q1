@@ -1,5 +1,6 @@
 package com.rinha.routes
 
+import com.rinha.models.SaldoResposta
 import com.rinha.models.Transacao
 import com.rinha.services.ClienteService
 import com.rinha.services.ExtratoService
@@ -29,7 +30,7 @@ fun Route.clienteRoute() {
 
             if (cliente != null) {
                 transacaoService.add(cliente, transacao)
-                val saldo = saldoService.update(cliente, transacao)
+                val saldo = saldoService.update(cliente, transacao).let { SaldoResposta(it.total, it.limite) }
                 call.respond(HttpStatusCode.OK, saldo)
             } else {
                 call.respond(HttpStatusCode.NotFound)
