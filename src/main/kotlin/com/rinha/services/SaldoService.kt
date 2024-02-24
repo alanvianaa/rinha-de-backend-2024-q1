@@ -24,7 +24,7 @@ class SaldoService {
             ultimoSaldo.total + transacao.valor
         }
 
-        if ((ultimoSaldo.limite + valor) < 0) throw InstantiationError("Invalid ID")
+        if (valor < ultimoSaldo.limite * -1) throw InstantiationError("Invalid ID")
 
         saldoDAO.update(cliente.id, valor)
 

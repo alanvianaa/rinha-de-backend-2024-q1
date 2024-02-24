@@ -29,9 +29,9 @@ fun Route.clienteRoute() {
             val transacao = call.receive<Transacao>()
 
             if (cliente != null) {
-                transacaoService.add(cliente, transacao)
                 try {
                     val saldo = saldoService.update(cliente, transacao).let { SaldoResposta(it.total, it.limite) }
+                    transacaoService.add(cliente, transacao)
                     call.respond(HttpStatusCode.OK, saldo)
                 } catch (e: InstantiationError) {
                     call.respond(HttpStatusCode.UnprocessableEntity)
