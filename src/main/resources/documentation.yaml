@@ -1,0 +1,124 @@
+openapi: 3.0.0
+info:
+  title: Rinha Backend API
+  version: 1.0.0
+  description: Documentação Rinha de backend API
+
+servers:
+  - url: http://localhost:8080
+    description: Servidor Local
+
+paths:
+  /clientes/{id}/transacoes:
+    post:
+      summary: Adicionar transação para um cliente
+      parameters:
+        - name: id
+          in: path
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            example: 123
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransacao'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaldoResposta'
+        '404':
+          description: Cliente não encontrado
+
+  /clientes/{id}/extrato:
+    get:
+      summary: Obter extrato de transações de um cliente
+      parameters:
+        - name: id
+          in: path
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            example: 123
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Extrato'
+        '404':
+          description: Cliente não encontrado
+
+components:
+  schemas:
+    NewTransacao:
+      type: object
+      properties:
+        valor:
+          type: number
+          example: 1000
+        tipo:
+          type: string
+          example: "c"
+        descricao:
+          type: string
+          example: "descricao"
+
+    SaldoResposta:
+      type: object
+      properties:
+        limite:
+          type: number
+          example: 500
+        saldo:
+          type: number
+          example: 1000.00
+
+    Saldo:
+      type: object
+      properties:
+        total:
+          type: number
+          example: 500
+        data_extrato:
+          type: string
+          format: date-time
+          example: "2024-02-24T10:15:30Z"
+        limite:
+          type: number
+          example: 1000.00
+
+    Transacao:
+      type: object
+      properties:
+        valor:
+          type: number
+          example: 100
+        tipo:
+          type: string
+          example: "d"
+        descricao:
+          type: string
+          example: "Deposito"
+        realizada_em:
+          type: string
+          format: date-time
+          example: "2024-02-24T10:15:30Z"
+
+    Extrato:
+      type: object
+      properties:
+        saldo:
+          $ref: '#/components/schemas/Saldo'
+        ultimas_transacoes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transacao'
