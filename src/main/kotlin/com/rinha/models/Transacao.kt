@@ -27,5 +27,5 @@ data class Transacao(
     val descricao: String,
     @Serializable(with = LocalDateTimeSerializer::class)
     @SerialName("realizada_em")
-    val realizadaEm: LocalDateTime
+    val realizadaEm: LocalDateTime = LocalDateTime.now()
 )
