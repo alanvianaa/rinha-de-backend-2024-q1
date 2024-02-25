@@ -28,9 +28,9 @@ fun Route.clienteRoute() {
                 call.respond(HttpStatusCode.UnprocessableEntity)
             } catch (e: NotFoundException) {
                 call.respond(HttpStatusCode.NotFound)
-            }/* catch (e: Exception) {
-                call.respond(HttpStatusCode.BadRequest)
-            }*/
+            } catch (e: IllegalArgumentException) {
+                call.respond(HttpStatusCode.UnprocessableEntity)
+            }
         }
         get("extrato") {
             try {
@@ -39,9 +39,9 @@ fun Route.clienteRoute() {
                 call.respond(HttpStatusCode.OK, extrato)
             }catch (e: NotFoundException) {
                 call.respond(HttpStatusCode.NotFound)
-            }/* catch (e: Exception) {
-                call.respond(HttpStatusCode.BadRequest)
-            }*/
+            } catch (e: IllegalArgumentException) {
+                call.respond(HttpStatusCode.UnprocessableEntity)
+            }
         }
     }
 }
