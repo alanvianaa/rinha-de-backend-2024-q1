@@ -37,7 +37,7 @@ fun Route.clienteRoute() {
                 val idCliente = call.parameters["id"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
                 val extrato = extratoService.get(idCliente)
                 call.respond(HttpStatusCode.OK, extrato)
-            }catch (e: NotFoundException) {
+            } catch (e: NotFoundException) {
                 call.respond(HttpStatusCode.NotFound)
             } catch (e: IllegalArgumentException) {
                 call.respond(HttpStatusCode.UnprocessableEntity)
